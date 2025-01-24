@@ -10,4 +10,8 @@ public class Trail
     public string? Difficulty { get; set; }
     public string? ImageUrl { get; set; }
     public string? TrailType { get; set; }
+    // public double? Distance { get; set; }
+    // public DateTime? InputTime { get; set; }
+    
+    
 }
