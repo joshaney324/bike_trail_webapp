@@ -1,0 +1,55 @@
+@page
+@model bike_gps_crud.Pages.Trails.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Trail</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Trail.Id" />
+            <div class="form-group">
+                <label asp-for="Trail.Name" class="control-label"></label>
+                <input asp-for="Trail.Name" class="form-control" />
+                <span asp-validation-for="Trail.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Trail.Description" class="control-label"></label>
+                <input asp-for="Trail.Description" class="form-control" />
+                <span asp-validation-for="Trail.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Trail.Difficulty" class="control-label"></label>
+                <input asp-for="Trail.Difficulty" class="form-control" />
+                <span asp-validation-for="Trail.Difficulty" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Trail.ImageUrl" class="control-label"></label>
+                <input asp-for="Trail.ImageUrl" class="form-control" />
+                <span asp-validation-for="Trail.ImageUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Trail.TrailType" class="control-label"></label>
+                <input asp-for="Trail.TrailType" class="form-control" />
+                <span asp-validation-for="Trail.TrailType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

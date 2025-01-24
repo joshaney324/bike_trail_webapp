@@ -1,0 +1,21 @@
+{
+    "version" : "2.0.0", 
+    "tasks" : [
+        {
+            "label": "debug",
+            "command": "dotnet",
+            "type": "process",
+            "presentation": {
+              "clear": true,
+              "showReuseMessage": false
+            },
+            "args": [
+              "build",
+              "${workspaceFolder}\\bike_gps_crud\\bike_gps_crud.csproj",
+              "/property:GenerateFullPaths=true",
+              "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+          }
+    ]
+}

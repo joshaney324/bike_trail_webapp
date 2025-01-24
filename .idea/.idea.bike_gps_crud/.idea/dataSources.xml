@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="Microsoft SQL Server (JetBrains)" uuid="e26f3df1-979c-4795-b9a5-c733f40ea122">
+    <data-source source="LOCAL" name="Microsoft SQL Server (JetBrains)" uuid="ea0c2a2a-4469-447a-9c76-2f0909d51f3b">
       <driver-ref>sqlserver.jb</driver-ref>
       <synchronize>true</synchronize>
       <configured-by-url>true</configured-by-url>
       <jdbc-driver>com.jetbrains.jdbc.sqlserver.SqlServerDriver</jdbc-driver>
-      <jdbc-url>Data Source=(LocalDB)\MSSQLLocalDB;Integrated Security=SSPI</jdbc-url>
+      <jdbc-url>Server=(localdb)\mssqllocaldb;Database=bike_gps_crudContext-9ad29e14-eac3-4d61-8828-683c5fcbbb51;Trusted_Connection=True;MultipleActiveResultSets=true</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
