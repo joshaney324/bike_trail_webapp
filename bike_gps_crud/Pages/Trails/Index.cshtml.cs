@@ -29,6 +29,10 @@ namespace bike_gps_crud.Pages.Trails
 
         public async Task OnGetAsync()
         {
+            IQueryable<string> trailTypeQuery = from m in _context.Trail
+                orderby m.TrailType
+                select m.TrailType;
+            
             var trailsQuery = from t in _context.Trail
                 select t;
             
@@ -39,15 +43,13 @@ namespace bike_gps_crud.Pages.Trails
             
             if (!string.IsNullOrEmpty(TrailType))
             {
-                trailsQuery = trailsQuery.Where(t => t.Name == TrailType);
+                trailsQuery = trailsQuery.Where(t => t.TrailType == TrailType);
             }
 
+            TrailTypes = new SelectList(await trailTypeQuery.Distinct().ToListAsync());
             Trails = await trailsQuery.ToListAsync();
             
-            TrailTypes = new SelectList(await _context.Trail
-                .Select(t => t.Name)
-                .Distinct()
-                .ToListAsync());
+            
         }
     }
 }

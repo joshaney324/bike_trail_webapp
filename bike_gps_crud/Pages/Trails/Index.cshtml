@@ -5,14 +5,18 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Trails Repository</h1>
 
 <form>
     <p>
-        <label>Title: <input type="text" asp-for="SearchString" /></label>
+        <label>Search By Title: <input type="text" asp-for="SearchString" /></label>
         <input type="submit" value="Filter" />
     </p>
 </form>
+
+<select asp-for="TrailType" asp-items="Model.TrailTypes">
+    <option value="">All</option>
+</select>
 
 
 <p>
