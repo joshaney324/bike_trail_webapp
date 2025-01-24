@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
-
+using bike_gps_crud.Models;
 namespace bike_gps_crud.Models;
+
+
 
 public class Trail
 {
@@ -12,6 +14,4 @@ public class Trail
     public string? TrailType { get; set; }
     // public double? Distance { get; set; }
     // public DateTime? InputTime { get; set; }
-    
-    
 }
