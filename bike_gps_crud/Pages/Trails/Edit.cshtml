@@ -40,6 +40,16 @@
                 <span asp-validation-for="Trail.TrailType" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Trail.DateAdded" class="control-label"></label>
+                <input asp-for="Trail.DateAdded" class="form-control" />
+                <span asp-validation-for="Trail.DateAdded" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Trail.GpxTrack" class="control-label"></label>
+                <input asp-for="Trail.GpxTrack" class="form-control" />
+                <span asp-validation-for="Trail.GpxTrack" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>

@@ -15,5 +15,7 @@ namespace bike_gps_crud.Data
         }
 
         public DbSet<bike_gps_crud.Models.Trail> Trail { get; set; } = default!;
+        public DbSet<bike_gps_crud.Models.User> User { get; set; } = default!;
+        public DbSet<bike_gps_crud.Models.UserTrail> UserTrail { get; set; } = default!;
     }
 }

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using bike_gps_crud.Data;
 using bike_gps_crud.Models;
 
-namespace bike_gps_crud.Pages.Trails
+namespace bike_gps_crud.Pages.UserTrails
 {
     public class CreateModel : PageModel
     {
@@ -21,11 +21,13 @@ namespace bike_gps_crud.Pages.Trails
 
         public IActionResult OnGet()
         {
+        ViewData["TrailId"] = new SelectList(_context.Trail, "Id", "Id");
+        ViewData["UserId"] = new SelectList(_context.User, "UserId", "UserId");
             return Page();
         }
 
         [BindProperty]
-        public Trail Trail { get; set; } = null!;
+        public UserTrail UserTrail { get; set; } = default!;
 
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
@@ -35,7 +37,7 @@ namespace bike_gps_crud.Pages.Trails
                 return Page();
             }
 
-            _context.Trail.Add(Trail);
+            _context.UserTrail.Add(UserTrail);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

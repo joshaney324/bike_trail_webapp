@@ -54,6 +54,21 @@
                             <span asp-validation-for="Trail.TrailType" class="text-danger"></span>
                         </div>
 
+                        <!-- Date Added -->
+                        <div class="mb-3">
+                            <label asp-for="Trail.DateAdded" class="form-label"></label>
+                            <input asp-for="Trail.DateAdded" class="form-control" placeholder="Enter trail type" />
+                            <span asp-validation-for="Trail.DateAdded" class="text-danger"></span>
+                        </div>
+
+                        <!-- GPX Track  -->
+                        <div class="mb-3">
+                            <label asp-for="Trail.GpxTrack" class="form-label"></label>
+                            <input asp-for="Trail.GpxTrack" class="form-control" placeholder="Enter trail type" />
+                            <span asp-validation-for="Trail.GpxTrack" class="text-danger"></span>
+                        </div>
+                        
+
                         <!-- Submit Button -->
                         <div class="d-grid">
                             <input type="submit" value="Add Trail" class="btn btn-primary btn-lg" />

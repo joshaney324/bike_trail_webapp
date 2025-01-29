@@ -1,0 +1,42 @@
+@page
+@model bike_gps_crud.Pages.UserTrails.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>UserTrail</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="UserTrail.UserId" class="control-label"></label>
+                <select asp-for="UserTrail.UserId" class ="form-control" asp-items="ViewBag.UserId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserTrail.TrailId" class="control-label"></label>
+                <select asp-for="UserTrail.TrailId" class ="form-control" asp-items="ViewBag.TrailId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserTrail.DateRidden" class="control-label"></label>
+                <input asp-for="UserTrail.DateRidden" class="form-control" />
+                <span asp-validation-for="UserTrail.DateRidden" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

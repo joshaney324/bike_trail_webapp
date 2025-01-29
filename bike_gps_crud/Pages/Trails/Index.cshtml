@@ -30,6 +30,8 @@
             <th style="padding: 10px; border: 1px solid #dee2e6;">@Html.DisplayNameFor(model => model.Trails[0].Difficulty)</th>
             <th style="padding: 10px; border: 1px solid #dee2e6;">@Html.DisplayNameFor(model => model.Trails[0].ImageUrl)</th>
             <th style="padding: 10px; border: 1px solid #dee2e6;">@Html.DisplayNameFor(model => model.Trails[0].TrailType)</th>
+            <th style="padding: 10px; border: 1px solid #dee2e6;">@Html.DisplayNameFor(model => model.Trails[0].DateAdded)</th>
+            <th style="padding: 10px; border: 1px solid #dee2e6;">@Html.DisplayNameFor(model => model.Trails[0].GpxTrack)</th>
             <th style="padding: 10px; border: 1px solid #dee2e6;">Actions</th>
         </tr>
         </thead>
@@ -41,6 +43,8 @@
                 <td style="padding: 10px; border: 1px solid #dee2e6;">@Html.DisplayFor(modelItem => item.Difficulty)</td>
                 <td style="padding: 10px; border: 1px solid #dee2e6;">@Html.DisplayFor(modelItem => item.ImageUrl)</td>
                 <td style="padding: 10px; border: 1px solid #dee2e6;">@Html.DisplayFor(modelItem => item.TrailType)</td>
+                <td style="padding: 10px; border: 1px solid #dee2e6;">@Html.DisplayFor(modelItem => item.DateAdded)</td>
+                <td style="padding: 10px; border: 1px solid #dee2e6;">@Html.DisplayFor(modelItem => item.GpxTrack)</td>
                 <td style="padding: 10px; border: 1px solid #dee2e6;">
                     <a asp-page="./Edit" asp-route-id="@item.Id" style="color: #007bff; text-decoration: none;">Edit</a> |
                     <a asp-page="./Details" asp-route-id="@item.Id" style="color: #007bff; text-decoration: none;">Details</a> |
