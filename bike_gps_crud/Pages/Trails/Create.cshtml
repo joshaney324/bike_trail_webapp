@@ -16,9 +16,9 @@
             <div class="card shadow-sm">
                 <div class="card-body">
                     <h4 class="card-title mb-4">Trail Details</h4>
-                    <form method="post">
+                    <form method="post" enctype="multipart/form-data">
                         <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
-                        
+
                         <!-- Name -->
                         <div class="mb-3">
                             <label asp-for="Trail.Name" class="form-label"></label>
@@ -40,11 +40,10 @@
                             <span asp-validation-for="Trail.Difficulty" class="text-danger"></span>
                         </div>
 
-                        <!-- Image URL -->
+                        <!-- Image Upload -->
                         <div class="mb-3">
-                            <label asp-for="Trail.ImageUrl" class="form-label"></label>
-                            <input asp-for="Trail.ImageUrl" class="form-control" placeholder="Enter image URL" />
-                            <span asp-validation-for="Trail.ImageUrl" class="text-danger"></span>
+                            <label class="form-label">Upload Trail Image</label>
+                            <input type="file" asp-for="TrailImage" class="form-control" accept="image/png" required />
                         </div>
 
                         <!-- Trail Type -->
@@ -64,10 +63,9 @@
                         <!-- GPX Track  -->
                         <div class="mb-3">
                             <label asp-for="Trail.GpxTrack" class="form-label"></label>
-                            <input asp-for="Trail.GpxTrack" class="form-control" placeholder="Enter trail type" />
+                            <input asp-for="Trail.GpxTrack" class="form-control" placeholder="GPX track" />
                             <span asp-validation-for="Trail.GpxTrack" class="text-danger"></span>
                         </div>
-                        
 
                         <!-- Submit Button -->
                         <div class="d-grid">
