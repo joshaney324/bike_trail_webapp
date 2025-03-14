@@ -1,0 +1,23 @@
+﻿@page
+@model bike_gps_crud.Pages.MapModel
+
+@{
+    ViewData["Title"] = "GPX Track Map";
+}
+
+<h1>GPX Track Map</h1>
+
+<div id="map" style="height: 600px; width: 100%;"></div>
+
+@section Scripts {
+    <script>
+        mapboxgl.accessToken = '@Model.MapboxAccessToken';
+
+        const map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v12',
+            center: [-122.420679, 37.772537], // Example coordinates
+            zoom: 12
+        });
+    </script>
+}
