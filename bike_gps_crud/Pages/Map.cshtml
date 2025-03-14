@@ -10,14 +10,49 @@
 <div id="map" style="height: 600px; width: 100%;"></div>
 
 @section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/togeojson@0.16.0/togeojson.js"></script>
+
     <script>
         mapboxgl.accessToken = '@Model.MapboxAccessToken';
-
+        
         const map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v12',
-            center: [-122.420679, 37.772537], // Example coordinates
-            zoom: 12
+            center: [-111.0392, 45.6760],
+            zoom: 9
         });
+
+        function loadGPXData(gpxData) {
+            const geojson = toGeoJSON.gpx(gpxData);
+            
+            map.on('load', () => {
+                map.addSource('gpx-track', {
+                    type: 'geojson',
+                    data: geojson
+                });
+
+                map.addLayer({
+                    id: 'gpx-track',
+                    type: 'line',
+                    source: 'gpx-track',
+                    paint: {
+                        'line-color': '#FF0000',
+                        'line-width': 3
+                    }
+                });
+            });
+        }
+        
+        fetch('/gpx_tracks/leverich.gpx')  
+            .then(response => response.text())
+            .then(gpxData => {
+
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(gpxData, "application/xml");
+
+                loadGPXData(xmlDoc);
+            })
+            .catch(error => console.error('Error loading GPX file:', error));
+
     </script>
 }

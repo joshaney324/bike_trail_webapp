@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using bike_gps_crud.Data;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage;
 
@@ -30,7 +31,14 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseStaticFiles();
+var provider = new FileExtensionContentTypeProvider();
+// Add new mappings
+provider.Mappings[ ".gpx" ] = "text/plain";
+
+app.UseStaticFiles( new StaticFileOptions
+{
+    ContentTypeProvider = provider
+} );
 
 app.UseRouting();
 
