@@ -36,8 +36,14 @@
                         <!-- Difficulty -->
                         <div class="mb-3">
                             <label asp-for="Trail.Difficulty" class="form-label"></label>
-                            <input asp-for="Trail.Difficulty" class="form-control" placeholder="Enter difficulty level" />
-                            <span asp-validation-for="Trail.Difficulty" class="text-danger"></span>
+                            <select asp-for="Trail.Difficulty" class="form-control">
+                                <option value="Green">Green</option>
+                                <option value="Blue">Blue</option>
+                                <option value="Black">Black</option>
+                                <option value="Red">Red</option>
+                                <option value="Purple">Not Rated</option>
+                            </select>
+                            <span asp-validation-for="Trail.TrailType" class="text-danger"></span>
                         </div>
 
                         <!-- Image Upload -->
@@ -49,21 +55,19 @@
                         <!-- Trail Type -->
                         <div class="mb-3">
                             <label asp-for="Trail.TrailType" class="form-label"></label>
-                            <input asp-for="Trail.TrailType" class="form-control" placeholder="Enter trail type" />
+                            <select asp-for="Trail.TrailType" class="form-control">
+                                <option value="Flow">Flow</option>
+                                <option value="Tech">Tech</option>
+                                <option value="High Speed">High Speed</option>
+                                <option value="N/A">N/A</option>
+                            </select>
                             <span asp-validation-for="Trail.TrailType" class="text-danger"></span>
-                        </div>
-
-                        <!-- Date Added -->
-                        <div class="mb-3">
-                            <label asp-for="Trail.DateAdded" class="form-label"></label>
-                            <input asp-for="Trail.DateAdded" class="form-control" placeholder="Enter trail type" />
-                            <span asp-validation-for="Trail.DateAdded" class="text-danger"></span>
                         </div>
 
                         <!-- GPX Track  -->
                         <div class="mb-3">
-                            <label asp-for="Trail.GpxTrack" class="form-label"></label>
-                            <input asp-for="Trail.GpxTrack" class="form-control" placeholder="GPX track" />
+                            <label class="form-label">Upload Trail GPX Track</label>
+                            <input type="file" asp-for="Gpx" class="form-control" accept=".gpx" required />
                             <span asp-validation-for="Trail.GpxTrack" class="text-danger"></span>
                         </div>
 

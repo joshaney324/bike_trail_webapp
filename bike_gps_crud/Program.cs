@@ -26,8 +26,35 @@ if (app.Environment.IsDevelopment())
         // Drop and recreate the database during development
         dbContext.Database.EnsureDeleted();
         dbContext.Database.EnsureCreated();
+
+        // Clear GPX Tracks folder
+        var gpxTracksPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "gpx_tracks");
+        var trailImagesPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Trail-Images");
+
+        DeleteFilesInDirectory(gpxTracksPath);
+        DeleteFilesInDirectory(trailImagesPath);
     }
 }
+
+void DeleteFilesInDirectory(string path)
+{
+    if (Directory.Exists(path))
+    {
+        var files = Directory.GetFiles(path);
+        foreach (var file in files)
+        {
+            try
+            {
+                File.Delete(file);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Failed to delete {file}: {ex.Message}");
+            }
+        }
+    }
+}
+
 
 app.UseHttpsRedirection();
 

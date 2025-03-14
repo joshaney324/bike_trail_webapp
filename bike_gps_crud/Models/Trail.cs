@@ -12,6 +12,6 @@ public class Trail
     public string? Difficulty { get; set; }
     public string? ImageUrl { get; set; }
     public string? TrailType { get; set; }
-    public string GpxTrack { get; set; } 
+    public string? GpxTrack { get; set; } 
     public DateTime DateAdded { get; set; } 
 }

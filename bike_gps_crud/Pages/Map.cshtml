@@ -22,7 +22,7 @@
             zoom: 9
         });
 
-        function loadGPXData(gpxData) {
+        function loadGPXData(gpxData, color) {
             const geojson = toGeoJSON.gpx(gpxData);
             
             map.on('load', () => {
@@ -36,23 +36,51 @@
                     type: 'line',
                     source: 'gpx-track',
                     paint: {
-                        'line-color': '#FF0000',
+                        'line-color': color,
                         'line-width': 3
                     }
                 });
             });
         }
+
+        @foreach (var trail in Model.Trails)
+        {
+            <text>
+                const trailName = '@trail.Name';
+                const gpxTrack = '@trail.GpxTrack';
+                const difficulty = '@trail.Difficulty';
         
-        fetch('/gpx_tracks/leverich.gpx')  
-            .then(response => response.text())
-            .then(gpxData => {
+        
+                function getColorByDifficulty(difficulty) {
+                    switch (difficulty) {
+                        case 'Green':
+                            return '#00FF00'; // Green
+                        case 'Blue':
+                            return '#0040ff'; // Blue
+                        case 'Black':
+                            return '#000000'; // Black
+                        case 'Red':
+                            return '#FF0000';
+                        case 'Purple':
+                            return '#FF00FF';
+                        default:
+                            return '#FFFFFF'; // Default color (White)
+                    }
+                }
 
-                const parser = new DOMParser();
-                const xmlDoc = parser.parseFromString(gpxData, "application/xml");
+                const color = getColorByDifficulty(difficulty);
 
-                loadGPXData(xmlDoc);
-            })
-            .catch(error => console.error('Error loading GPX file:', error));
+                fetch(gpxTrack)
+                    .then(response => response.text())
+                    .then(gpxData => {
+                        const parser = new DOMParser();
+                        const xmlDoc = parser.parseFromString(gpxData, "application/xml");
+
+                        loadGPXData(xmlDoc, color);
+                    })
+                    .catch(error => console.error('Error loading GPX file for ' + trailName + ':', error));
+            </text>
+        }
 
     </script>
 }
