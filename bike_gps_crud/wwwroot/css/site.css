@@ -29,3 +29,96 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+
+.privacy-page {
+  font-family: Arial, sans-serif;
+  background-color: white;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+}
+
+.privacy-page h1,
+.privacy-page h2 {
+  color: black;
+}
+
+.privacy-page h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.privacy-page h2 {
+  border-bottom: 2px solid black;
+  padding-bottom: 5px;
+  margin-top: 30px;
+}
+
+.trails-repository {
+  padding: 0 20px;
+}
+
+.search-form {
+  margin-bottom: 20px;
+}
+
+.input-text {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 300px;
+}
+
+.btn {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: white;
+  text-decoration: none;
+}
+
+.btn-filter {
+  background-color: #007bff;
+}
+
+.btn-create {
+  margin-top: 20px;
+  background-color: #28a745;
+  padding: 10px 15px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.table th,
+.table td {
+  padding: 10px;
+  border: 1px solid #dee2e6;
+}
+
+.table thead tr {
+  background-color: #f8f9fa;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.link {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.edit-link {
+  color: #007bff;
+}
+
+.details-link {
+  color: #007bff;
+}
+
+.delete-link {
+  color: #dc3545;
+}
