@@ -23,14 +23,16 @@ if (app.Environment.IsDevelopment())
         // Get the database context
         var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 
-        // Drop and recreate the database during development
+        // UNCOMMENT IF IN DEVELOPMENT (Removes database each build for easier testing)
+        
         dbContext.Database.EnsureDeleted();
         dbContext.Database.EnsureCreated();
-
-        // Clear GPX Tracks folder
+        
+        
         var gpxTracksPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "gpx_tracks");
         var trailImagesPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Trail-Images");
-
+        
+        
         DeleteFilesInDirectory(gpxTracksPath);
         DeleteFilesInDirectory(trailImagesPath);
     }
@@ -59,7 +61,6 @@ void DeleteFilesInDirectory(string path)
 app.UseHttpsRedirection();
 
 var provider = new FileExtensionContentTypeProvider();
-// Add new mappings
 provider.Mappings[ ".gpx" ] = "text/plain";
 
 app.UseStaticFiles( new StaticFileOptions

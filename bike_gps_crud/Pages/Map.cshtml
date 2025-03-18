@@ -82,32 +82,34 @@
             @foreach (var trail in Model.Trails)
             {
                 <text>
-                    const trailName = '@trail.Name';
-                    const gpxTrack = '@trail.GpxTrack';
-                    const difficulty = '@trail.Difficulty';
+                    (function() {
+                        const trailName = '@trail.Name';
+                        const gpxTrack = '@trail.GpxTrack';
+                        const difficulty = '@trail.Difficulty';
 
-                    function getColorByDifficulty(difficulty) {
-                        switch (difficulty) {
-                            case 'Green': return '#00FF00';
-                            case 'Blue': return '#0040ff';
-                            case 'Black': return '#000000';
-                            case 'Red': return '#FF0000';
-                            case 'Purple': return '#FF00FF';
-                            default: return '#FFFFFF';
+                        function getColorByDifficulty(difficulty) {
+                            switch (difficulty) {
+                                case 'Green': return '#00FF00';
+                                case 'Blue': return '#0040ff';
+                                case 'Black': return '#000000';
+                                case 'Red': return '#FF0000';
+                                case 'Purple': return '#FF00FF';
+                                default: return '#FFFFFF';
+                            }
                         }
-                    }
 
-                    const color = getColorByDifficulty(difficulty);
-                    const trailId = `trail-${trailName.replace(/\s+/g, '-')}`;
+                        const color = getColorByDifficulty(difficulty);
+                        const trailId = `trail-${trailName.replace(/\s+/g, '-')}`;
 
-                    fetch(gpxTrack)
-                        .then(response => response.text())
-                        .then(gpxData => {
-                            const parser = new DOMParser();
-                            const xmlDoc = parser.parseFromString(gpxData, "application/xml");
-                            loadGPXData(xmlDoc, color, trailId);
-                        })
-                        .catch(error => console.error('Error loading GPX file for ' + trailName + ':', error));
+                        fetch(gpxTrack)
+                            .then(response => response.text())
+                            .then(gpxData => {
+                                const parser = new DOMParser();
+                                const xmlDoc = parser.parseFromString(gpxData, "application/xml");
+                                loadGPXData(xmlDoc, color, trailId);
+                            })
+                            .catch(error => console.error('Error loading GPX file for ' + trailName + ':', error));
+                    })();
                 </text>
             }
         });
