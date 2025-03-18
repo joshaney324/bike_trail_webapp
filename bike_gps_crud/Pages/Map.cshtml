@@ -14,73 +14,103 @@
 
     <script>
         mapboxgl.accessToken = '@Model.MapboxAccessToken';
-        
+
         const map = new mapboxgl.Map({
             container: 'map',
-            style: 'mapbox://styles/mapbox/streets-v12',
+            style: 'mapbox://styles/mapbox/satellite-streets-v12',
             center: [-111.0392, 45.6760],
-            zoom: 9
+            zoom: 9,
+            pitch: 60,
+            bearing: -20,
+            antialias: true
         });
 
-        function loadGPXData(gpxData, color) {
-            const geojson = toGeoJSON.gpx(gpxData);
+        map.on('load', () => {
+
+            map.addControl(new mapboxgl.NavigationControl({
+                visualizePitch: true 
+            }));
             
-            map.on('load', () => {
-                map.addSource('gpx-track', {
+            map.dragRotate.enable();
+            map.keyboard.enable();
+            map.touchZoomRotate.enable({
+                around: 'center'
+            });
+            
+            map.setMaxPitch(85);
+
+            map.addSource('mapbox-dem', {
+                'type': 'raster-dem',
+                'url': 'mapbox://mapbox.terrain-rgb',
+                'tileSize': 512,
+                'maxzoom': 14
+            });
+
+            map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 });
+            
+            map.addLayer({
+                'id': 'sky',
+                'type': 'sky',
+                'paint': {
+                    'sky-type': 'atmosphere',
+                    'sky-atmosphere-sun': [0.0, 0.0],
+                    'sky-atmosphere-sun-intensity': 15
+                }
+            });
+
+            function loadGPXData(gpxData, color, id) {
+                const geojson = toGeoJSON.gpx(gpxData);
+
+                map.addSource(id, {
                     type: 'geojson',
                     data: geojson
                 });
 
                 map.addLayer({
-                    id: 'gpx-track',
+                    id: id,
                     type: 'line',
-                    source: 'gpx-track',
+                    source: id,
                     paint: {
                         'line-color': color,
-                        'line-width': 3
+                        'line-width': 3,
+                        'line-opacity': 0.9,
+                        'line-translate': [0, -2]
                     }
                 });
-            });
-        }
+            }
 
-        @foreach (var trail in Model.Trails)
-        {
-            <text>
-                const trailName = '@trail.Name';
-                const gpxTrack = '@trail.GpxTrack';
-                const difficulty = '@trail.Difficulty';
-        
-        
-                function getColorByDifficulty(difficulty) {
-                    switch (difficulty) {
-                        case 'Green':
-                            return '#00FF00'; // Green
-                        case 'Blue':
-                            return '#0040ff'; // Blue
-                        case 'Black':
-                            return '#000000'; // Black
-                        case 'Red':
-                            return '#FF0000';
-                        case 'Purple':
-                            return '#FF00FF';
-                        default:
-                            return '#FFFFFF'; // Default color (White)
+            @foreach (var trail in Model.Trails)
+            {
+                <text>
+                    const trailName = '@trail.Name';
+                    const gpxTrack = '@trail.GpxTrack';
+                    const difficulty = '@trail.Difficulty';
+
+                    function getColorByDifficulty(difficulty) {
+                        switch (difficulty) {
+                            case 'Green': return '#00FF00';
+                            case 'Blue': return '#0040ff';
+                            case 'Black': return '#000000';
+                            case 'Red': return '#FF0000';
+                            case 'Purple': return '#FF00FF';
+                            default: return '#FFFFFF';
+                        }
                     }
-                }
 
-                const color = getColorByDifficulty(difficulty);
+                    const color = getColorByDifficulty(difficulty);
+                    const trailId = `trail-${trailName.replace(/\s+/g, '-')}`;
 
-                fetch(gpxTrack)
-                    .then(response => response.text())
-                    .then(gpxData => {
-                        const parser = new DOMParser();
-                        const xmlDoc = parser.parseFromString(gpxData, "application/xml");
-
-                        loadGPXData(xmlDoc, color);
-                    })
-                    .catch(error => console.error('Error loading GPX file for ' + trailName + ':', error));
-            </text>
-        }
-
+                    fetch(gpxTrack)
+                        .then(response => response.text())
+                        .then(gpxData => {
+                            const parser = new DOMParser();
+                            const xmlDoc = parser.parseFromString(gpxData, "application/xml");
+                            loadGPXData(xmlDoc, color, trailId);
+                        })
+                        .catch(error => console.error('Error loading GPX file for ' + trailName + ':', error));
+                </text>
+            }
+        });
     </script>
+
 }
