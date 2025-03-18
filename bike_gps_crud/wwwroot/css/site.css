@@ -159,5 +159,23 @@ body {
 
 .key-item span {
   margin-left: 8px;
-  font-size: 14px;
+  font-size: 18px;
+}
+
+.key-item span:last-child {
+  font-weight: bold;
+}
+
+
+.key-item:nth-child(2) span:last-child { color: green; }
+.key-item:nth-child(3) span:last-child { color: blue; }
+.key-item:nth-child(4) span:last-child { color: black; }
+.key-item:nth-child(5) span:last-child { color: red; }
+.key-item:nth-child(6) span:last-child { color: purple; }
+
+#map-title {
+  text-align: center;
+  padding: 20px 0;
+  font-size: 2rem;
+  font-weight: bold;
 }
