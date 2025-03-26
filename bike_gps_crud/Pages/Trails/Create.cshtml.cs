@@ -44,7 +44,8 @@ namespace bike_gps_crud.Pages.Trails
             {
                 return Page();
             }
-
+            
+            
             // Validate Image Upload
             if (TrailImage == null || TrailImage.Length == 0)
             {
@@ -88,14 +89,7 @@ namespace bike_gps_crud.Pages.Trails
             }
 
             Trail.GpxTrack = $"gpx_tracks/{gpxFileName}";  // Correct GPX path
-
-            // Set the DateAdded property if not set in the form
-            if (Trail.DateAdded == default)
-            {
-                Trail.DateAdded = DateTime.Now;
-            }
-
-            // Add the trail to the database
+            
             _context.Trail.Add(Trail);
             await _context.SaveChangesAsync();
 
