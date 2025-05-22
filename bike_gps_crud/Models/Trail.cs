@@ -1,5 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using bike_gps_crud.Models;
+using Microsoft.AspNetCore.Identity;
+
 namespace bike_gps_crud.Models;
 
 public class Trail
@@ -20,6 +23,7 @@ public class Trail
     public DateTime DateAdded { get; } = DateTime.Now;
     
     // Foreign Key
-    public int UserId { get; set; }
-    public User User { get; set; } = null!;
+    public required Guid UserId { get; set; }
+    [ForeignKey("UserId")]
+    public ApplicationUser User { get; set; } = null!;
 }

@@ -1,20 +1,23 @@
 using System;
 using System.IO;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using bike_gps_crud.Data;
 using bike_gps_crud.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace bike_gps_crud.Pages.Trails
 {
+    [Authorize]
     public class CreateModel : PageModel
     {
         private readonly ApplicationDbContext _context;
         private readonly string _imageStoragePath;
         private readonly string _gpxStoragePath;
-
+        
         public CreateModel(ApplicationDbContext context)
         {
             _context = context;
@@ -40,6 +43,8 @@ namespace bike_gps_crud.Pages.Trails
 
         public async Task<IActionResult> OnPostAsync()
         {
+            var id = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            
             if (!ModelState.IsValid)
             {
                 return Page();
@@ -94,7 +99,7 @@ namespace bike_gps_crud.Pages.Trails
                 TrailType = ViewTrail.TrailType,
                 ImageUrl = $"Trail-Images/{imageFileName}",
                 GpxTrack = $"gpx_tracks/{gpxFileName}",
-                UserId = 1
+                UserId = id
             };
             
             _context.Trail.Add(trail);
