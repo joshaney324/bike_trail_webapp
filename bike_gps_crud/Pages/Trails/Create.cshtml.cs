@@ -43,7 +43,7 @@ namespace bike_gps_crud.Pages.Trails
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var id = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
             
             if (!ModelState.IsValid)
             {
@@ -99,7 +99,7 @@ namespace bike_gps_crud.Pages.Trails
                 TrailType = ViewTrail.TrailType,
                 ImageUrl = $"Trail-Images/{imageFileName}",
                 GpxTrack = $"gpx_tracks/{gpxFileName}",
-                UserId = id
+                UserId = userId
             };
             
             _context.Trail.Add(trail);

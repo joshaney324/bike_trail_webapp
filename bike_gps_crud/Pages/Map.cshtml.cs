@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using bike_gps_crud.Data;
 using bike_gps_crud.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace bike_gps_crud.Pages;
@@ -11,19 +13,31 @@ public class MapModel : PageModel
         "pk.eyJ1Ijoiam9zaGFuZXkzMjQiLCJhIjoiY204OTJtZDl3MHdxajJqcHMza2R2bHRyOCJ9.UgXb_yFl0DtJVaFrJ0qRxw";
 
     private readonly ApplicationDbContext _context;
+    private readonly UserManager<ApplicationUser> _userManager;
 
     public IList<Trail> Trails { get; set; } = new List<Trail>();
 
-    public MapModel(ApplicationDbContext context)
+    public MapModel(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
     {
         _context = context;
+        _userManager = userManager;
     }
 
-    public async Task OnGetAsync()
+    public async Task<IActionResult> OnGetAsync()
     {
-        var trailsQuery = from t in _context.Trail
-            select t;
+        var user = await _userManager.GetUserAsync(User);
         
-        Trails = await trailsQuery.ToListAsync();
+
+        if (user == null)
+        {
+            return Challenge(); // force login
+        }
+
+        var userId = user.Id;
+
+        Trails = await _context.Trail
+            .Where(t => t.UserId == userId)
+            .ToListAsync();
+        return Page();
     }
 }

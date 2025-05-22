@@ -64,11 +64,11 @@ if (app.Environment.IsDevelopment())
         //     dbContext.SaveChanges();
         // }
 
-        var gpxTracksPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "gpx_tracks");
-        var trailImagesPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Trail-Images");
-
-        DeleteFilesInDirectory(gpxTracksPath);
-        DeleteFilesInDirectory(trailImagesPath);
+        // var gpxTracksPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "gpx_tracks");
+        // var trailImagesPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Trail-Images");
+        //
+        // DeleteFilesInDirectory(gpxTracksPath);
+        // DeleteFilesInDirectory(trailImagesPath);
     }
 }
 
