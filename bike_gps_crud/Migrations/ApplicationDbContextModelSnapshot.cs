@@ -30,29 +30,36 @@ namespace bike_gps_crud.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("DateAdded")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("Difficulty")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<string>("GpxTrack")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("TrailType")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Trail");
                 });
@@ -60,10 +67,7 @@ namespace bike_gps_crud.Migrations
             modelBuilder.Entity("bike_gps_crud.Models.User", b =>
                 {
                     b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
 
                     b.Property<DateTime>("DateJoined")
                         .HasColumnType("datetime2");
@@ -72,9 +76,11 @@ namespace bike_gps_crud.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PasswordHash")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Username")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserId");
@@ -82,54 +88,20 @@ namespace bike_gps_crud.Migrations
                     b.ToTable("User");
                 });
 
-            modelBuilder.Entity("bike_gps_crud.Models.UserTrail", b =>
+            modelBuilder.Entity("bike_gps_crud.Models.Trail", b =>
                 {
-                    b.Property<int>("UserTrailId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserTrailId"));
-
-                    b.Property<DateTime>("DateRidden")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("TrailId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserTrailId");
-
-                    b.HasIndex("TrailId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserTrail");
-                });
-
-            modelBuilder.Entity("bike_gps_crud.Models.UserTrail", b =>
-                {
-                    b.HasOne("bike_gps_crud.Models.Trail", "Trail")
-                        .WithMany()
-                        .HasForeignKey("TrailId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("bike_gps_crud.Models.User", "User")
-                        .WithMany("UserTrails")
+                        .WithMany("Trails")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Trail");
 
                     b.Navigation("User");
                 });
 
             modelBuilder.Entity("bike_gps_crud.Models.User", b =>
                 {
-                    b.Navigation("UserTrails");
+                    b.Navigation("Trails");
                 });
 #pragma warning restore 612, 618
         }

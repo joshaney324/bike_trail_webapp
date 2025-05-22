@@ -20,19 +20,30 @@ if (app.Environment.IsDevelopment())
 {
     using (var scope = app.Services.CreateScope())
     {
-        // Get the database context
         var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 
-        // UNCOMMENT IF IN DEVELOPMENT (Removes database each build for easier testing)
-        
         dbContext.Database.EnsureDeleted();
         dbContext.Database.EnsureCreated();
         
-        
+        // dbContext.Database.Migrate(); 
+
+        // SEED A USER WITH ID = 1
+        if (!dbContext.User.Any(u => u.UserId == 1))
+        {
+            dbContext.User.Add(new bike_gps_crud.Models.User
+            {
+                UserId = 1,
+                Username = "testuser",
+                PasswordHash = "placeholder",
+                DateJoined = DateTime.Now
+            });
+
+            dbContext.SaveChanges();
+        }
+
         var gpxTracksPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "gpx_tracks");
         var trailImagesPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Trail-Images");
-        
-        
+
         DeleteFilesInDirectory(gpxTracksPath);
         DeleteFilesInDirectory(trailImagesPath);
     }

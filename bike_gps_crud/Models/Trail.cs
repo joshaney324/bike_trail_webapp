@@ -2,8 +2,6 @@
 using bike_gps_crud.Models;
 namespace bike_gps_crud.Models;
 
-
-
 public class Trail
 {
     public int Id { get; init; }
@@ -20,4 +18,8 @@ public class Trail
     [MaxLength(250)]
     public string? GpxTrack { get; set; } 
     public DateTime DateAdded { get; } = DateTime.Now;
+    
+    // Foreign Key
+    public int UserId { get; set; }
+    public User User { get; set; } = null!;
 }

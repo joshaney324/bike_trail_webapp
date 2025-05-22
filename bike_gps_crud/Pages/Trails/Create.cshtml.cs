@@ -29,7 +29,7 @@ namespace bike_gps_crud.Pages.Trails
         }
 
         [BindProperty]
-        public Trail Trail { get; set; } = null!;
+        public ViewTrail ViewTrail { get; set; } = null!;
 
         [BindProperty]
         public IFormFile TrailImage { get; set; } = null!;
@@ -66,8 +66,6 @@ namespace bike_gps_crud.Pages.Trails
                 await TrailImage.CopyToAsync(stream);
             }
 
-            Trail.ImageUrl = $"Trail-Images/{imageFileName}";  // Correct image path
-
             // Validate GPX Upload
             if (Gpx == null || Gpx.Length == 0)
             {
@@ -88,9 +86,18 @@ namespace bike_gps_crud.Pages.Trails
                 await Gpx.CopyToAsync(stream);
             }
 
-            Trail.GpxTrack = $"gpx_tracks/{gpxFileName}";  // Correct GPX path
+            var trail = new Trail
+            {
+                Name = ViewTrail.Name,
+                Description = ViewTrail.Description,
+                Difficulty = ViewTrail.Difficulty,
+                TrailType = ViewTrail.TrailType,
+                ImageUrl = $"Trail-Images/{imageFileName}",
+                GpxTrack = $"gpx_tracks/{gpxFileName}",
+                UserId = 1
+            };
             
-            _context.Trail.Add(Trail);
+            _context.Trail.Add(trail);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

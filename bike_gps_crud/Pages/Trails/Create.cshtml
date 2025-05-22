@@ -21,54 +21,54 @@
 
                         <!-- Name -->
                         <div class="mb-3">
-                            <label asp-for="Trail.Name" class="form-label"></label>
-                            <input asp-for="Trail.Name" class="form-control" placeholder="Enter trail name" />
-                            <span asp-validation-for="Trail.Name" class="text-danger"></span>
+                            <label asp-for="ViewTrail.Name" class="form-label"></label>
+                            <input asp-for="ViewTrail.Name" class="form-control" placeholder="Enter trail name" />
+                            <span asp-validation-for="ViewTrail.Name" class="text-danger"></span>
                         </div>
 
                         <!-- Description -->
                         <div class="mb-3">
-                            <label asp-for="Trail.Description" class="form-label"></label>
-                            <textarea asp-for="Trail.Description" class="form-control" rows="3" placeholder="Enter trail description"></textarea>
-                            <span asp-validation-for="Trail.Description" class="text-danger"></span>
+                            <label asp-for="ViewTrail.Description" class="form-label"></label>
+                            <textarea asp-for="ViewTrail.Description" class="form-control" rows="3" placeholder="Enter trail description"></textarea>
+                            <span asp-validation-for="ViewTrail.Description" class="text-danger"></span>
                         </div>
 
                         <!-- Difficulty -->
                         <div class="mb-3">
-                            <label asp-for="Trail.Difficulty" class="form-label"></label>
-                            <select asp-for="Trail.Difficulty" class="form-control">
+                            <label asp-for="ViewTrail.Difficulty" class="form-label"></label>
+                            <select asp-for="ViewTrail.Difficulty" class="form-control">
                                 <option value="Green">Green</option>
                                 <option value="Blue">Blue</option>
                                 <option value="Black">Black</option>
                                 <option value="Red">Red</option>
                                 <option value="Purple">Not Rated</option>
                             </select>
-                            <span asp-validation-for="Trail.TrailType" class="text-danger"></span>
+                            <span asp-validation-for="ViewTrail.TrailType" class="text-danger"></span>
                         </div>
 
                         <!-- Image Upload -->
                         <div class="mb-3">
-                            <label class="form-label">Upload Trail Image</label>
-                            <input type="file" asp-for="TrailImage" class="form-control" accept="image/png" required />
+                            <label asp-for="TrailImage" class="form-label"></label>
+                            <input asp-for="TrailImage" class="form-control" accept="image/png" required />
                         </div>
 
                         <!-- Trail Type -->
                         <div class="mb-3">
-                            <label asp-for="Trail.TrailType" class="form-label"></label>
-                            <select asp-for="Trail.TrailType" class="form-control">
+                            <label asp-for="ViewTrail.TrailType" class="form-label"></label>
+                            <select asp-for="ViewTrail.TrailType" class="form-control">
                                 <option value="Flow">Flow</option>
                                 <option value="Tech">Tech</option>
                                 <option value="High Speed">High Speed</option>
                                 <option value="N/A">N/A</option>
                             </select>
-                            <span asp-validation-for="Trail.TrailType" class="text-danger"></span>
+                            <span asp-validation-for="ViewTrail.TrailType" class="text-danger"></span>
                         </div>
 
                         <!-- GPX Track  -->
                         <div class="mb-3">
-                            <label class="form-label">Upload Trail GPX Track</label>
-                            <input type="file" asp-for="Gpx" class="form-control" accept=".gpx" required />
-                            <span asp-validation-for="Trail.GpxTrack" class="text-danger"></span>
+                            <label asp-for="Gpx" class="form-label"></label>
+                            <input asp-for="Gpx" class="form-control" type="file" accept=".gpx" required />
+                            <span asp-validation-for="ViewTrail.GpxTrack" class="text-danger"></span>
                         </div>
 
                         <!-- Submit Button -->

@@ -9,7 +9,6 @@
     <ItemGroup>
       <Folder Include="Pages\Trails\" />
       <Folder Include="Pages\Users\" />
-      <Folder Include="Pages\UserTrails\" />
       <Folder Include="wwwroot\gpx_tracks\" />
       <Folder Include="wwwroot\Trail-Images\" />
     </ItemGroup>
