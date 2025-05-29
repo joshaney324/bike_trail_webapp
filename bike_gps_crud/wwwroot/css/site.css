@@ -72,11 +72,14 @@ body {
 
 .btn {
   padding: 5px 10px;
-  border: none;
   border-radius: 4px;
   cursor: pointer;
-  color: white;
   text-decoration: none;
+}
+
+.btn:not(.btn-outline-dark):not(.btn-outline-secondary):not(.btn-outline-primary) {
+  color: white;
+  border: none;
 }
 
 .btn-filter {
