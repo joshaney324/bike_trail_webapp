@@ -92,6 +92,12 @@ body {
   padding: 10px 15px;
 }
 
+.btn-create:hover {
+  background-color: #28a745;
+  color: white;
+  text-decoration: none;
+}
+
 .table {
   width: 100%;
   border-collapse: collapse;

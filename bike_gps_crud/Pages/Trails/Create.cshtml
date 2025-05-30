@@ -48,13 +48,13 @@
 
                         <!-- Image Upload -->
                         <div class="mb-3">
-                            <label asp-for="TrailImage" class="form-label"></label>
+                            <label asp-for="TrailImage" class="form-label">Trail Image</label>
                             <input asp-for="TrailImage" class="form-control" accept="image/png" required />
                         </div>
 
                         <!-- Trail Type -->
                         <div class="mb-3">
-                            <label asp-for="ViewTrail.TrailType" class="form-label"></label>
+                            <label asp-for="ViewTrail.TrailType" class="form-label">Trail Type</label>
                             <select asp-for="ViewTrail.TrailType" class="form-control">
                                 <option value="Flow">Flow</option>
                                 <option value="Tech">Tech</option>
@@ -66,7 +66,7 @@
 
                         <!-- GPX Track  -->
                         <div class="mb-3">
-                            <label asp-for="Gpx" class="form-label"></label>
+                            <label asp-for="Gpx" class="form-label">GPX Track</label>
                             <input asp-for="Gpx" class="form-control" type="file" accept=".gpx" required />
                             <span asp-validation-for="ViewTrail.GpxTrack" class="text-danger"></span>
                         </div>
