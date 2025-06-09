@@ -5,59 +5,94 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
-
-<h4>Trail</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Trail.Id" />
-            <div class="form-group">
-                <label asp-for="Trail.Name" class="control-label"></label>
-                <input asp-for="Trail.Name" class="form-control" />
-                <span asp-validation-for="Trail.Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Trail.Description" class="control-label"></label>
-                <input asp-for="Trail.Description" class="form-control" />
-                <span asp-validation-for="Trail.Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Trail.Difficulty" class="control-label"></label>
-                <input asp-for="Trail.Difficulty" class="form-control" />
-                <span asp-validation-for="Trail.Difficulty" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Trail.ImageUrl" class="control-label"></label>
-                <input asp-for="Trail.ImageUrl" class="form-control" />
-                <span asp-validation-for="Trail.ImageUrl" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Trail.TrailType" class="control-label"></label>
-                <input asp-for="Trail.TrailType" class="form-control" />
-                <span asp-validation-for="Trail.TrailType" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Trail.DateAdded" class="control-label"></label>
-                <input asp-for="Trail.DateAdded" class="form-control" />
-                <span asp-validation-for="Trail.DateAdded" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Trail.GpxTrack" class="control-label"></label>
-                <input asp-for="Trail.GpxTrack" class="form-control" />
-                <span asp-validation-for="Trail.GpxTrack" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+<div class="container py-5">
+    <div class="text-center">
+        <h1 class="display-4">Edit Trail</h1>
+        <p class="lead">Update the trail information below.</p>
     </div>
-</div>
 
-<div>
-    <a asp-page="./Index">Back to List</a>
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Trail Details</h4>
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                        <input type="hidden" asp-for="Trail.Id" />
+
+                        <!-- Name -->
+                        <div class="mb-3">
+                            <label asp-for="Trail.Name" class="form-label"></label>
+                            <input asp-for="Trail.Name" class="form-control" placeholder="Enter trail name" />
+                            <span asp-validation-for="Trail.Name" class="text-danger"></span>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="mb-3">
+                            <label asp-for="Trail.Description" class="form-label"></label>
+                            <textarea asp-for="Trail.Description" class="form-control" rows="3" placeholder="Enter trail description"></textarea>
+                            <span asp-validation-for="Trail.Description" class="text-danger"></span>
+                        </div>
+
+                        <!-- Difficulty -->
+                        <div class="mb-3">
+                            <label asp-for="Trail.Difficulty" class="form-label"></label>
+                            <select asp-for="Trail.Difficulty" class="form-control">
+                                <option value="Green">Green</option>
+                                <option value="Blue">Blue</option>
+                                <option value="Black">Black</option>
+                                <option value="Red">Red</option>
+                                <option value="Purple">Not Rated</option>
+                            </select>
+                            <span asp-validation-for="Trail.Difficulty" class="text-danger"></span>
+                        </div>
+
+                        <!-- Image URL -->
+                        <div class="mb-3">
+                            <label asp-for="Trail.ImageUrl" class="form-label"></label>
+                            <input asp-for="Trail.ImageUrl" class="form-control" placeholder="e.g., /images/trail123.png" />
+                            <span asp-validation-for="Trail.ImageUrl" class="text-danger"></span>
+                        </div>
+
+                        <!-- Trail Type -->
+                        <div class="mb-3">
+                            <label asp-for="Trail.TrailType" class="form-label">Trail Type</label>
+                            <select asp-for="Trail.TrailType" class="form-control">
+                                <option value="Flow">Flow</option>
+                                <option value="Tech">Tech</option>
+                                <option value="High Speed">High Speed</option>
+                                <option value="N/A">N/A</option>
+                            </select>
+                            <span asp-validation-for="Trail.TrailType" class="text-danger"></span>
+                        </div>
+
+                        <!-- Date Added -->
+                        <div class="mb-3">
+                            <label asp-for="Trail.DateAdded" class="form-label"></label>
+                            <input asp-for="Trail.DateAdded" class="form-control" />
+                            <span asp-validation-for="Trail.DateAdded" class="text-danger"></span>
+                        </div>
+
+                        <!-- GPX Track -->
+                        <div class="mb-3">
+                            <label asp-for="Trail.GpxTrack" class="form-label">GPX Track Path</label>
+                            <input asp-for="Trail.GpxTrack" class="form-control" />
+                            <span asp-validation-for="Trail.GpxTrack" class="text-danger"></span>
+                        </div>
+
+                        <!-- Submit -->
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <a asp-page="./Index" class="btn btn-secondary">Back to List</a>
+    </div>
 </div>
 
 @section Scripts {

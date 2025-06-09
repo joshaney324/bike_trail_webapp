@@ -7,18 +7,27 @@
 <div class="trails-repository">
     <h1>Trails Repository</h1>
 
-    <form class="search-form">
+    <form method="get" class="search-form">
         <p>
             <label>Search By Title: 
                 <input type="text" asp-for="SearchString" class="input-text" />
             </label>
+            
+        </p>
+        <p>
+
+            <select asp-for="TrailType" asp-items="Model.TrailTypes" class="input-text">
+                <option value="">All</option>
+            </select>
+        </p>
+        <p>
+            
             <input type="submit" value="Filter" class="btn btn-filter" />
+            
         </p>
     </form>
 
-    <select asp-for="TrailType" asp-items="Model.TrailTypes" class="input-text">
-        <option value="">All</option>
-    </select>
+    
 
     <p>
         <a asp-page="Create" class="btn btn-create">Create New</a>
