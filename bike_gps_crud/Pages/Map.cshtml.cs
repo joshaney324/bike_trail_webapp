@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using System.Text.Json;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using bike_gps_crud.Data;
 using bike_gps_crud.Models;
 using Microsoft.AspNetCore.Identity;
@@ -9,8 +10,7 @@ namespace bike_gps_crud.Pages;
 
 public class MapModel : PageModel
 {
-    public string MapboxAccessToken { get; } =
-        "pk.eyJ1Ijoiam9zaGFuZXkzMjQiLCJhIjoiY204OTJtZDl3MHdxajJqcHMza2R2bHRyOCJ9.UgXb_yFl0DtJVaFrJ0qRxw";
+    public string MapboxAccessToken { get; }
 
     private readonly ApplicationDbContext _context;
     private readonly UserManager<ApplicationUser> _userManager;
@@ -21,6 +21,11 @@ public class MapModel : PageModel
     {
         _context = context;
         _userManager = userManager;
+        
+        // Load MapboxAccessToken from mapboxsettings.json
+        var json = System.IO.File.ReadAllText("mapboxsettings.json");
+        var config = JsonSerializer.Deserialize<MapboxConfig>(json);
+        MapboxAccessToken = config?.MapboxAccessToken ?? "";
     }
 
     public async Task<IActionResult> OnGetAsync()
@@ -40,4 +45,9 @@ public class MapModel : PageModel
             .ToListAsync();
         return Page();
     }
+}
+
+public class MapboxConfig
+{
+    public string MapboxAccessToken { get; set; }
 }
