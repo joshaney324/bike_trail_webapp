@@ -4,3 +4,6 @@ obj/
 riderModule.iml
 /_ReSharper.Caches/
 /mapboxsettings.json
+/bike_gps_crud.sln
+*.png
+*.gpx
